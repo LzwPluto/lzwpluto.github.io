@@ -5,7 +5,7 @@
   <link href="https://lzwpluto.github.io/" rel="alternate" type="text/html"/>
   <link href="https://lzwpluto.github.io/atom.xml" rel="self" type="application/atom+xml"/>
   <id>https://lzwpluto.github.io/</id>
-  <updated>2026-01-04T09:28:24.639Z</updated>
+  <updated>2026-01-04T09:42:36.970Z</updated>
   <language>zh_CN</language>
   <entry>
     <title>云端同步测试</title>
@@ -34,6 +34,20 @@
       <name>Pluto</name>
     </author>
     <category term="技术"></category>
+  </entry>
+  <entry>
+    <title>一下午的成果</title>
+    <link href="https://lzwpluto.github.io/posts/%E4%B8%80%E4%B8%8B%E5%8D%88%E7%9A%84%E6%88%90%E6%9E%9C/" rel="alternate" type="text/html"/>
+    <id>https://lzwpluto.github.io/posts/%E4%B8%80%E4%B8%8B%E5%8D%88%E7%9A%84%E6%88%90%E6%9E%9C/</id>
+    <published>2026-01-04T00:00:00.000Z</published>
+    <updated>2026-01-04T00:00:00.000Z</updated>
+    <summary>努力</summary>
+    <content type="html"><![CDATA[<p>#努力</p>
+]]></content>
+    <author>
+      <name>Pluto</name>
+    </author>
+    <category term="努力"></category>
   </entry>
   <entry>
     <title>Arch Linux 极简安装步骤指南</title>
