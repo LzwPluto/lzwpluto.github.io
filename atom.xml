@@ -5,8 +5,521 @@
   <link href="https://lzwpluto.github.io/" rel="alternate" type="text/html"/>
   <link href="https://lzwpluto.github.io/atom.xml" rel="self" type="application/atom+xml"/>
   <id>https://lzwpluto.github.io/</id>
-  <updated>2026-01-09T14:28:38.095Z</updated>
+  <updated>2026-01-19T14:10:30.710Z</updated>
   <language>zh_CN</language>
+  <entry>
+    <title>张量的基本运算</title>
+    <link href="https://lzwpluto.github.io/posts/%E5%BC%A0%E9%87%8F%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97/" rel="alternate" type="text/html"/>
+    <id>https://lzwpluto.github.io/posts/%E5%BC%A0%E9%87%8F%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97/</id>
+    <published>2026-01-19T00:00:00.000Z</published>
+    <updated>2026-01-19T00:00:00.000Z</updated>
+    <summary>张量的基本运算</summary>
+    <content type="html"><![CDATA[<h1>day02.02_张量的基本运算</h1>
+<h2>Docstring</h2>
+<blockquote>
+<p>案例：
+演示张量的基本运算操作，包括加法、减法、乘法和除法。</p>
+<p>涉及到的API：
+add(), sub(), mul(), div(), neg() --&gt; 张量的加法、减法、乘法、除法和取负操作
+add_(), sub_(), mul_(), div_() --&gt; 张量的加法、减法、乘法、除法的原地操作(可以修改源数据, 类似于C语言中++c和c++的区别)</p>
+<p>掌握：
++, -, *, /</p>
+<p>掌握：
+1.可以用+、-、*、/进行张量的基本运算
+2.如果是张量和数值运算，则：张量的每个元素都和该数值进行运算</p>
+</blockquote>
+<pre><code># 导包
+import torch
+
+# 1.创建张量
+t1 = torch.tensor([1, 2, 3])
+
+# 2.张量的加法
+# t2 = t1.add(10) # 不会修改源数据
+# t2 = t1 + 10  # 不会修改源数据
+# t1.add_(10) # 会修改源数据
+#t1 += 10 # 会修改源数据
+
+
+# 其他运算类似
+# t2 = t1.sub(1)
+# t2 = t1.mul(2)
+# t2 = t1.div(2)  # 有小数
+# t2 = t1.neg()  # 取负数
+t2 = t1 // 2
+# 3.打印结果
+print(f't1:{t1}')
+print(f't2:{t2}')
+</code></pre>
+]]></content>
+    <author>
+      <name>Pluto</name>
+    </author>
+    <category term="技术"></category>
+  </entry>
+  <entry>
+    <title>张量类型转换</title>
+    <link href="https://lzwpluto.github.io/posts/%E5%BC%A0%E9%87%8F%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" rel="alternate" type="text/html"/>
+    <id>https://lzwpluto.github.io/posts/%E5%BC%A0%E9%87%8F%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/</id>
+    <published>2026-01-19T00:00:00.000Z</published>
+    <updated>2026-01-19T00:00:00.000Z</updated>
+    <summary>张量类型转换</summary>
+    <content type="html"><![CDATA[<h1>04_张量类型转换</h1>
+<h2>Docstring</h2>
+<blockquote>
+<p>案例：
+创建指定类型的张量</p>
+<p>涉及到的函数如下：
+torch.type （torch支持的数据类型）
+torch.half, torch.float, torch.double, torch.short, torch.int, torch.long</p>
+<p>需要掌握的函数：
+torch.type</p>
+</blockquote>
+<pre><code># 导包
+import torch
+
+# 场景1: 直接创建指定类型的张量
+t1 = torch.tensor(data=[1, 2, 3, 4, 5], dtype=torch.float) # 默认是torch.float32
+print(f't1: {t1}, (元素)type: {t1.dtype}, (张量)type: {type(t1)}')
+print('-' * 30)
+
+# 场景2: 创建好张量后，进行类型转换
+# 思路1：使用.type()方法
+t2 = t1.type(torch.int16)
+print(f't2: {t2}, (元素)type: {t2.dtype}, (张量)type: {type(t2)}')
+print('-' * 30)
+
+# 思路2：使用专用的转换函数
+print(t2.half()) # 转换为float16
+print(t2.float()) # 转换为float32
+print(t2.double()) # 转换为float64
+print(t2.short()) # 转换为int16
+print(t2.int()) # 转换为int32
+print(t2.long()) # 转换为int64
+print('-' * 30)
+</code></pre>
+]]></content>
+    <author>
+      <name>Pluto</name>
+    </author>
+    <category term="技术"></category>
+  </entry>
+  <entry>
+    <title>创建全0全1指定值张量</title>
+    <link href="https://lzwpluto.github.io/posts/%E5%88%9B%E5%BB%BA%E5%85%A80%E5%85%A81%E6%8C%87%E5%AE%9A%E5%80%BC%E5%BC%A0%E9%87%8F/" rel="alternate" type="text/html"/>
+    <id>https://lzwpluto.github.io/posts/%E5%88%9B%E5%BB%BA%E5%85%A80%E5%85%A81%E6%8C%87%E5%AE%9A%E5%80%BC%E5%BC%A0%E9%87%8F/</id>
+    <published>2026-01-19T00:00:00.000Z</published>
+    <updated>2026-01-19T00:00:00.000Z</updated>
+    <summary>创建全0全1指定值张量</summary>
+    <content type="html"><![CDATA[<h1>03_创建全0全1指定值张量</h1>
+<h2>Docstring</h2>
+<blockquote>
+<p>案例：
+演示如何创建全0张量、全1张量以及指定值张量。</p>
+<p>涉及到的函数如下：
+torch.ones 和 torch.ones_like - 创建全1张量
+torch.zeros 和 torch.zeros_like - 创建全0张量
+torch.full 和 torch.full_like - 创建指定值张量</p>
+<p>需要掌握的函数：
+torch.zeros, torch.full</p>
+</blockquote>
+<pre><code># 导包
+import torch
+
+# 场景1: torch.ones 和 torch.ones_like 创建全1张量
+t1 = torch.ones(2, 3)
+print(f't1: {t1}, type: {type(t1)}')
+print('-' * 30)
+t2 = torch.tensor([[1, 2], [3, 4], [5, 6]])
+print(f't2: {t2}, type: {type(t2)}')
+print('-' * 30)
+# t3 --&gt; 基于t2创建一个全1张量
+t3 = torch.ones_like(t2)
+print(f't3: {t3}, type: {type(t3)}')
+print('-' * 30)
+
+# 场景2: torch.zeros 和 torch.zeros_like 创建全0张量
+t4 = torch.zeros(2, 4)
+print(f't4: {t4}, type: {type(t4)}')
+print('-' * 30)
+t5 = torch.tensor([[7, 8, 9], [10, 11, 12]])
+print(f't5: {t5}, type: {type(t5)}')
+print('-' * 30)
+# t6 --&gt; 基于t5创建一个全0张量
+t6 = torch.zeros_like(t5)
+print(f't6: {t6}, type: {type(t6)}')
+print('-' * 30)
+
+# 场景3: torch.full 和 torch.full_like 创建指定值张量
+t4 = torch.full(size=(2,3), fill_value=255) # 创建一个2行3列，值为255的张量
+print(f't4: {t4}, type: {type(t4)}')
+print('-' * 30)
+
+t5 = torch.tensor([[7, 8, 9], [10, 11, 12]])
+print(f't5: {t5}, type: {type(t5)}')
+print('-' * 30)
+# t6 --&gt; 基于t5创建一个全0张量
+t6 = torch.full_like(t5, fill_value=255)
+print(f't6: {t6}, type: {type(t6)}')
+print('-' * 30)
+# 函数测试
+</code></pre>
+]]></content>
+    <author>
+      <name>Pluto</name>
+    </author>
+    <category term="技术"></category>
+  </entry>
+  <entry>
+    <title>创建线性和随机张量</title>
+    <link href="https://lzwpluto.github.io/posts/%E5%88%9B%E5%BB%BA%E7%BA%BF%E6%80%A7%E5%92%8C%E9%9A%8F%E6%9C%BA%E5%BC%A0%E9%87%8F/" rel="alternate" type="text/html"/>
+    <id>https://lzwpluto.github.io/posts/%E5%88%9B%E5%BB%BA%E7%BA%BF%E6%80%A7%E5%92%8C%E9%9A%8F%E6%9C%BA%E5%BC%A0%E9%87%8F/</id>
+    <published>2026-01-19T00:00:00.000Z</published>
+    <updated>2026-01-19T00:00:00.000Z</updated>
+    <summary>创建线性和随机张量</summary>
+    <content type="html"><![CDATA[<h1>02_创建线性和随机张量</h1>
+<h2>Docstring</h2>
+<blockquote>
+<p>案例：演示创建线性张量和随机张量的方式</p>
+<p>涉及到的函数：
+torch.arange 和 torch.linspace 创建线性张量
+torch.random.initial_seed 和 torch.random.manual_seed 设置随机种子
+torch.rand/randn 创建随机浮点类型张量
+torch.randint(low, high, size=()) 创建随机整数类型张量</p>
+<p>要掌握的函数：
+torch.arrange
+torch.linspace
+torch.manual_seed
+torch.randint</p>
+</blockquote>
+<pre><code># 导包
+import torch
+
+# 1.定义函数，演示：torch.arange 和 torch.linspace 创建线性张量
+def dm01():
+    # 场景1：创建指定范围的线性张量
+    # 参1：起始值，参2：终止值（不包含），参3：步长
+    t1 = torch.arange(0,10,2)
+    print(f't1: {t1}, type: {type(t1)}')
+    print('-'*30)
+
+    # 场景2：创建指定范围和指定个数的线性等差数列
+    # 参1：起始值，参2：终止值（包含），参3：元素个数
+    t2 = torch.linspace(1,10,4)
+    print(f't2: {t2}, type: {type(t2)}')
+
+
+# 2.定义函数，演示：torch.random.initial_seed 和 torch.random.manual_seed 设置随机种子
+def dm02():
+    # step1：设置随机种子
+    #torch.initial_seed()        # 默认使用系统时间戳作为随机种子
+    torch.manual_seed(3)      # 设置随机种子
+
+
+    # step2：创建随机张量
+    # 场景1：均匀分布的（0，1）随机张量
+    t1 = torch.rand(2,3)
+    print(f't1: {t1}, type: {type(t1)}')
+    print('-'*30)
+
+    # 场景2：正态分布的随机张量
+    t2 = torch.randn(2,3)
+    print(f't2: {t2}, type: {type(t2)}')
+    print('-'*30)
+
+    # 场景3：创建随机整数张量
+    t3 = torch.randint(1,10,size=(3,5))
+    print(f't3: {t3}, type: {type(t3)}')
+
+
+# 3.测试函数
+if __name__ == "__main__":
+    # dm01()
+    dm02()
+</code></pre>
+]]></content>
+    <author>
+      <name>Pluto</name>
+    </author>
+    <category term="技术"></category>
+  </entry>
+  <entry>
+    <title>张量的点乘和矩阵乘法</title>
+    <link href="https://lzwpluto.github.io/posts/%E5%BC%A0%E9%87%8F%E7%9A%84%E7%82%B9%E4%B9%98%E5%92%8C%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95/" rel="alternate" type="text/html"/>
+    <id>https://lzwpluto.github.io/posts/%E5%BC%A0%E9%87%8F%E7%9A%84%E7%82%B9%E4%B9%98%E5%92%8C%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95/</id>
+    <published>2026-01-19T00:00:00.000Z</published>
+    <updated>2026-01-19T00:00:00.000Z</updated>
+    <summary>张量的点乘和矩阵乘法</summary>
+    <content type="html"><![CDATA[<h1>day02.03_张量的点乘和矩阵乘法</h1>
+<h2>Docstring</h2>
+<blockquote>
+<p>案例：
+演示张量的点乘和矩阵乘法操作。
+点乘：
+要求：两个张量的维度必须相同，对应位置的元素直接做相应的操作
+API：
+t1 * t2
+t1.mul(t2)  #nultiply: 点乘
+矩阵乘法：
+要求：两个张量，第一个张量的列数，等于第二个张量的行数（A列=B行）
+结果：A行B列
+API：
+t1 @ t2
+t1.matmul(t2)  # matrix multiply: 矩阵乘法
+t1.dot(t2)     # 扩展：只针对于一维张量有效</p>
+</blockquote>
+<pre><code># 导包
+import torch
+
+# 1.定义函数，演示张量：点乘
+def dm01():
+    # 1.定义张量，2行3列
+    t1 = torch.tensor([[1, 2, 3],[4, 5, 6]])
+    print(f't1: {t1}')
+
+    # 2.定义张量，2行3列
+    t2 = torch.tensor([[1, 2, 3],[4, 5, 6]])
+    print(f't2: {t2}')
+
+    # 3.点乘
+    # t3 = t1 * t2
+    t3 = t1.mul(t2) #效果同上
+    # 4.打印结果
+    print(f't3: {t3}')
+
+# 2.定义函数，演示张量：矩阵乘法
+def dm02():
+    # 条件：A列 = B行，结果：A行B列
+    # 1.定义张量，2行3列
+    t1 = torch.tensor([[1, 2, 3],[4, 5, 6]])
+    print(f't1: {t1}')
+
+    # 2.定义张量，2行3列
+    t2 = torch.tensor([[7, 8],[9, 10],[11, 12]])
+    print(f't2: {t2}')
+
+    # 3.矩阵乘法
+    t3 = t1 @ t2
+    # t3 = t1.matmul(t2) #效果同上,matrix multiply(矩阵乘法)
+
+    # 4.打印结果
+    print(f't3: {t3}')
+
+    # 5.演示dot()函数
+    # t3 = t1.dot(t2) # 报错
+    t4 = torch.tensor([1, 2, 3])
+    t5 = torch.tensor([4, 5, 6])
+    t6 = t4.dot(t5)
+    print(f't6: {t6}')
+
+# 3.调用函数，测试
+if __name__ == '__main__':
+    dm01()
+    dm02()
+</code></pre>
+]]></content>
+    <author>
+      <name>Pluto</name>
+    </author>
+    <category term="技术"></category>
+  </entry>
+  <entry>
+    <title>张量和numpy之间相互转换</title>
+    <link href="https://lzwpluto.github.io/posts/%E5%BC%A0%E9%87%8F%E5%92%8Cnumpy%E4%B9%8B%E9%97%B4%E7%9B%B8%E4%BA%92%E8%BD%AC%E6%8D%A2/" rel="alternate" type="text/html"/>
+    <id>https://lzwpluto.github.io/posts/%E5%BC%A0%E9%87%8F%E5%92%8Cnumpy%E4%B9%8B%E9%97%B4%E7%9B%B8%E4%BA%92%E8%BD%AC%E6%8D%A2/</id>
+    <published>2026-01-19T00:00:00.000Z</published>
+    <updated>2026-01-19T00:00:00.000Z</updated>
+    <summary>张量和numpy之间相互转换</summary>
+    <content type="html"><![CDATA[<h1>day02.01_张量和numpy之间相互转换</h1>
+<h2>Docstring</h2>
+<blockquote>
+<p>案例：
+演示如何在PyTorch张量和NumPy数组之间进行相互转换，以及如何从标量中提取其内容</p>
+<p>涉及到的API：
+场景1：张量 --&gt; numpy nd数组对象
+张量对象.numpy()         共享内存
+张量对象.numpy().copy()  不共享内存, 链式编程写法,
+场景2：numpy nd数组对象 --&gt; 张量
+from_numpy()             共享内存
+torch.tensor(nd数组)     不共享内存
+场景3：从标量张量中提取其内容
+标量张量.item()</p>
+<p>掌握：
+张量 --&gt; numpy： 张量对象.numpy()
+numpy --&gt; 张量： torch.tensor(nd数组)
+从标量张量中提取其内容： 标量张量.item()</p>
+</blockquote>
+<pre><code># 导包
+import torch
+import numpy as np
+
+# 1. 定义函数，演示：张量 --&gt; numpy
+def dm01():
+    # 1. 创建一个张量
+    t1 = torch.tensor([1,2,3,4,5])
+    print(f't1: {t1}, type: {type(t1)}')
+    # 2. 张量 --&gt; numpy
+    # n1 = t1.numpy() # 共享内存
+    n1 = t1.numpy().copy() # 不共享内存
+    print(f'n1: {n1}, type: {type(n1)}')
+    # 3. 修改n1中的数据，观察t1的变化
+    n1[0] = 100
+    print(f'n1: {n1}')
+    print(f't1: {t1}')
+    print('-' * 30)
+
+# 2. 定义函数，演示：numpy --&gt; 张量
+def dm02():
+    # 1. 创建一个numpy nd数组对象
+    n1 = np.array([10,20,30])
+    print(f'n1: {n1}, type: {type(n1)}')
+    # 2. numpy --&gt; 张量
+    # t1 = torch.from_numpy(n1).type(torch.float32) # 转换+转类型
+    t1 = torch.from_numpy(n1) # 共享内存
+    print(f't1: {t1}, type: {type(t1)}')
+
+    t2 = torch.tensor(n1) # 不共享内存
+    print(f't2: {t2}, type: {type(t2)}')
+
+    # 3. 修改n1中的数据，观察t1和t2的变化
+    n1[0] = 200
+    print(f'n1: {n1}')
+    print(f't1: {t1}')
+    print(f't2: {t2}')
+    print('-' * 30)
+
+# 3. 定义函数，演示：从标量张量(只有一个值的张量)中提取其内容
+def dm03():
+    # 1.创建张量
+    t1 = torch.tensor(100)          # 标量张量，可以
+    # t1 = torch.tensor([100, ])      # 可以
+    # t1 = torch.tensor([100, 200])   # 注意：这里不是标量张量
+    print(f't1: {t1}, type: {type(t1)}')
+    # 2.提取标量张量中的内容
+    a = t1.item()
+    print(f'value: {a}, type: {type(a)}')
+
+# 4. 测试
+if __name__ == '__main__':
+    #dm01()
+    #dm02()
+    dm03()
+</code></pre>
+]]></content>
+    <author>
+      <name>Pluto</name>
+    </author>
+    <category term="技术"></category>
+  </entry>
+  <entry>
+    <title>张量的基本创建方式</title>
+    <link href="https://lzwpluto.github.io/posts/%E5%BC%A0%E9%87%8F%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%88%9B%E5%BB%BA%E6%96%B9%E5%BC%8F/" rel="alternate" type="text/html"/>
+    <id>https://lzwpluto.github.io/posts/%E5%BC%A0%E9%87%8F%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%88%9B%E5%BB%BA%E6%96%B9%E5%BC%8F/</id>
+    <published>2026-01-19T00:00:00.000Z</published>
+    <updated>2026-01-19T00:00:00.000Z</updated>
+    <summary>张量的基本创建方式</summary>
+    <content type="html"><![CDATA[<h1>01_张量的基本创建方式</h1>
+<h2>Docstring</h2>
+<blockquote>
+<p>案例：演示张量的基本创建方式</p>
+<p>张量：
+Pytorch框架属于最常用的深度学习框架之一，无论是后续要学的ANN（人工神经网络）、CNN（卷积神经网络）、RNN（循环神经网络）等模型，都离不开张量的操作。
+张量（Tensor）是Pytorch中最基本</p>
+<pre><code>张量 -&gt; 存储同一类元素的容器，且元素值必须是数值才可以
+</code></pre>
+<p>张良的基本创建方式：
+torch.tensor 根据指定的数据创建
+torch.Tensor 根据形状创建张量，其他可用来创建指定的张量
+torch.IntTensor、 torch.FloatTensor、torch.DoubleTensor 根据指定的数据类型创建张量</p>
+<p>细节：
+Tensor方式较之于tensor方式，可以直接创建指定形状的张量</p>
+</blockquote>
+<pre><code># 导包
+import torch
+import numpy as np
+
+# 1.定义函数，演示：torch.tensor 根据指定的数据创建
+
+def dm01():
+    # 场景1：标量 张量
+    t1 = torch.tensor(10)
+    print(f't1: {t1}, type: {type(t1)}')
+    print('-'*30)
+
+    # 场景2：列表 --&gt; 张量
+    data = [[1,2,3],[4,5,6]]
+    t2 = torch.tensor(data)
+    print(f't2: {t2}, type: {type(t2)}')
+    print('-'*30)
+
+    # 场景3：numpy nd数组 --&gt; 张量
+    data = np.random.randint(1,10,size=(2,3))
+    t3 = torch.tensor(data, dtype=torch.float32)
+    print(f't3: {t3}, type: {type(t3)}')
+    print('-'*30)
+
+    # 场景4：尝试直接创建 指定维度（例如2行3列的）张量
+    # t4 = torch.tensor(data=2, dtype=3)
+    # print(f't4: {t4}, type: {type(t4)}')
+
+# 2.定义函数，演示：根据形状创建张量，其他可用来创建指定的张量
+def dm02():
+    # 场景1：标量 张量
+    t1 = torch.Tensor(10)
+    print(f't1: {t1}, type: {type(t1)}')
+    print('-'*30)
+
+    # 场景2：列表 --&gt; 张量
+    data = [[1,2,3],[4,5,6]]
+    t2 = torch.Tensor(data)
+    print(f't2: {t2}, type: {type(t2)}')
+    print('-'*30)
+
+    # 场景3：numpy nd数组 --&gt; 张量
+    data = np.random.randint(1,10,size=(2,3))
+    t3 = torch.Tensor(data)
+    print(f't3: {t3}, type: {type(t3)}')
+    print('-'*30)
+
+    # 场景4：尝试直接创建 指定维度（例如2行3列的）张量
+    t4 = torch.Tensor(2, 3)
+    print(f't4: {t4}, type: {type(t4)}')
+
+# 3.定义函数，演示：torch.IntTensor、 torch.FloatTensor、torch.DoubleTensor 根据指定的数据类型创建张量
+def dm03():
+    # 场景1：标量 张量
+    t1 = torch.IntTensor(10)
+    print(f't1: {t1}, type: {type(t1)}')
+    print('-'*30)
+
+    # 场景2：列表 --&gt; 张量
+    data = [[1,2,3],[4,5,6]]
+    t2 = torch.IntTensor(data)
+    print(f't2: {t2}, type: {type(t2)}')
+    print('-'*30)
+
+    # 场景3：numpy nd数组 --&gt; 张量
+    data = np.random.randint(1,10,size=(2,3))
+    t3 = torch.IntTensor(data)
+    print(f't3: {t3}, type: {type(t3)}')
+    print('-'*30)
+    # 场景4：如果类型不匹配，会尝试自动转换类型
+    data = np.random.randint(1,10,size=(2,3))
+    t4 = torch.FloatTensor(data)        #默认：float32
+    print(f't4: {t4}, type: {type(t4)}')
+
+# 4.定义测试函数
+if __name__ == "__main__":
+    # dm01()        #掌握
+    # dm02()
+    dm03()
+</code></pre>
+]]></content>
+    <author>
+      <name>Pluto</name>
+    </author>
+    <category term="技术"></category>
+  </entry>
   <entry>
     <title>赶紧考完放假</title>
     <link href="https://lzwpluto.github.io/posts/%E8%B5%B6%E7%B4%A7%E8%80%83%E5%AE%8C%E6%94%BE%E5%81%87/" rel="alternate" type="text/html"/>
